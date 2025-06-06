@@ -8,12 +8,16 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import streamlit as st
 
-# connect to M-SQL servers IXREPORT_COMMERCIAL to get all policies
+# Load secrets
 secrets = st.secrets["database"]
+
+# Encode the password for URL
 password = urllib.parse.quote_plus(secrets["password"])
+
+# Build connection string
 connection_string = (
-    f"mssql+pyodbc://{secrets['user']}:{password}@{secrets['host']}:{secrets['port']}/{secrets['database']}?"
-    "driver=ODBC Driver 17 for SQL Server&TrustServerCertificate=yes&timeout=30"
+    f"mssql+pyodbc://{secrets['user']}:{password}@{secrets['host']}:{secrets['port']}/"
+    f"{secrets['database']}?driver=ODBC+Driver+17+for+SQL+Server&TrustServerCertificate=yes&timeout=30"
 )
 engine = sqlalchemy.create_engine(connection_string)
 query = text("""
