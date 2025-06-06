@@ -1,5 +1,4 @@
-import sys
-import importlib
+
 import pandas as pd
 import numpy as np
 from sqlalchemy import create_engine, text
@@ -8,12 +7,6 @@ import urllib.parse
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-# add utils to path for notebook to utilize things
-sys.path.append("../")
-# import custom modules
-from src.utils import classes
-# cell to reload any custom module, post updates
-importlib.reload(classes)
 # connect to M-SQL servers IXREPORT_COMMERCIAL to get all policies
 password = urllib.parse.quote_plus("Jw@l!n2023")
 connection_string = (
