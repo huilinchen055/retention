@@ -8,21 +8,18 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import streamlit as st
 
-# Load database credentials
-secrets = st.secrets["database"]
-user = secrets["user"]
-password = urllib.parse.quote_plus(secrets["password"])
-host = secrets["host"]
-port = secrets["port"]
-database = secrets["database"]
+from sqlalchemy import create_engine
 
-# Build connection string
+user = "jwalinthaker"
+password = "Jw@l!n2023"
+host = "PRVAMDBRPT01.CLOUD.ICG360.NET"
+port = "1433"
+database = "IXREPORT_COMMERCIAL"
+
 conn_str = (
-    f"mssql+pyodbc://{user}:{password}@{host}:{port}/{database}"
-    "?driver=ODBC+Driver+17+for+SQL+Server&TrustServerCertificate=yes&timeout=10"
+    f"mssql+pytds://{user}:{password}@{host}:{port}/{database}"
 )
 
-# Create engine
 engine = create_engine(conn_str)
 query = text("""
 SELECT *								
