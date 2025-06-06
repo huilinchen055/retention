@@ -1,0 +1,10 @@
+streamlit
+sqlalchemy
+pandas
+matplotlib
+seaborn
+sys
+importlib
+pandas 
+numpy 
+urllib

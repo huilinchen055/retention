@@ -2,13 +2,12 @@ import sys
 import importlib
 import pandas as pd
 import numpy as np
-import plotly.express as px
 from sqlalchemy import create_engine, text
 import sqlalchemy
 import urllib
 import seaborn as sns
 import matplotlib.pyplot as plt
-import xlwings as xw
+
 # add utils to path for notebook to utilize things
 sys.path.append("../")
 # import custom modules
@@ -139,7 +138,7 @@ yearly = (
 )
 yearly
 # Filter the data for the year 2022
-import streamlit as st
+import retention as st
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
