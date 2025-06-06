@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 from sqlalchemy import create_engine, text
 import sqlalchemy
-import urllib
+import urllib.parse
 import seaborn as sns
 import matplotlib.pyplot as plt
 
@@ -16,7 +16,6 @@ from src.utils import classes
 importlib.reload(classes)
 # connect to M-SQL servers IXREPORT_COMMERCIAL to get all policies
 password = urllib.parse.quote_plus("Jw@l!n2023")
-
 connection_string = (
     f"mssql+pyodbc://jwalinthaker:{password}"
     "@PRVAMDBRPT01.CLOUD.ICG360.NET:1433/IXREPORT_COMMERCIAL?"
@@ -136,7 +135,7 @@ yearly = (
 )
 yearly
 # Filter the data for the year 2022
-import retention as st
+
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
