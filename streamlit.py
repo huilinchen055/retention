@@ -1,11 +1,3 @@
-import os
-print(os.getcwd())  # This should print the directory you're running the script from
-# Get the current working directory
-current_dir = os.getcwd()
-wd = r"C:\Users\EmmaChen\LA Exhibit"
-os.chdir(wd) #### change path to wd
-current_dir = os.getcwd()
-print(current_dir)
 import sys
 import importlib
 import pandas as pd
