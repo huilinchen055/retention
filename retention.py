@@ -136,9 +136,6 @@ yearly = (
 yearly
 # Filter the data for the year 2022
 
-import matplotlib.pyplot as plt
-import seaborn as sns
-import pandas as pd
 
 # --- Sample placeholder for your data ---
 # Replace this with your actual dataframe load
