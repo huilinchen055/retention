@@ -6,16 +6,15 @@ import sqlalchemy
 import urllib.parse
 import seaborn as sns
 import matplotlib.pyplot as plt
+import streamlit as st
 
 # connect to M-SQL servers IXREPORT_COMMERCIAL to get all policies
-password = urllib.parse.quote_plus("Jw@l!n2023")
+secrets = st.secrets["database"]
+password = urllib.parse.quote_plus(secrets["password"])
 connection_string = (
-    f"mssql+pyodbc://jwalinthaker:{password}"
-    "@PRVAMDBRPT01.CLOUD.ICG360.NET:1433/IXREPORT_COMMERCIAL?"
+    f"mssql+pyodbc://{secrets['user']}:{password}@{secrets['host']}:{secrets['port']}/{secrets['database']}?"
     "driver=ODBC Driver 17 for SQL Server&TrustServerCertificate=yes&timeout=30"
 )
-
-# create an SQLAlchemy engine
 engine = sqlalchemy.create_engine(connection_string)
 query = text("""
 SELECT *								
@@ -86,10 +85,11 @@ SELECT *
 """)
 # Execute the query using the parameters
 try:
-    df_sql = pd.read_sql_query(query, engine.connect())
-    #print(df_sql.head())  # Display the result (or you can use df.info(), df.describe(), etc.)
+    with engine.connect() as conn:
+        df_sql = pd.read_sql_query(query, conn)
+        st.success("✅ Data loaded successfully")
 except Exception as e:
-    print("Error occurred:", e)
+    st.error(f"❌ Error occurred: {e}")
 df_sql = df_sql.loc[:, ~df_sql.T.duplicated()]
 df = df_sql.sort_values(by=['InsightPolicyID', 'EffectiveDatePolicyTerm'])
 # Step 3: Shift to compare current term to the prior term’s expiration
