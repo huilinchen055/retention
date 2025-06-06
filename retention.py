@@ -17,8 +17,10 @@ from src.utils import settings
 importlib.reload(settings)
 importlib.reload(classes)
 # connect to M-SQL servers IXREPORT_COMMERCIAL to get all policies
+password = urllib.parse.quote_plus("Jw@l!n2023")
+
 connection_string = (
-    f"mssql+pyodbc://{settings.SAGESURE_DB_AUTH_USER}:{urllib.parse.quote_plus(settings.SAGESURE_DB_AUTH_PASS)}"
+    f"mssql+pyodbc://jwalinthaker:{password}"
     "@PRVAMDBRPT01.CLOUD.ICG360.NET:1433/IXREPORT_COMMERCIAL?"
     "driver=ODBC Driver 17 for SQL Server&TrustServerCertificate=yes&timeout=30"
 )
