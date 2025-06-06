@@ -12,11 +12,9 @@ import matplotlib.pyplot as plt
 sys.path.append("../")
 # import custom modules
 from src.utils import classes
-from src.utils import functions
 from src.utils import settings
 # cell to reload any custom module, post updates
 importlib.reload(settings)
-importlib.reload(functions)
 importlib.reload(classes)
 # connect to M-SQL servers IXREPORT_COMMERCIAL to get all policies
 connection_string = (
