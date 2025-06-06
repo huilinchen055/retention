@@ -8,18 +8,22 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import streamlit as st
 
-# Load secrets
+# Load database credentials
 secrets = st.secrets["database"]
-
-# Encode the password for URL
+user = secrets["user"]
 password = urllib.parse.quote_plus(secrets["password"])
+host = secrets["host"]
+port = secrets["port"]
+database = secrets["database"]
 
 # Build connection string
-connection_string = (
-    f"mssql+pyodbc://{secrets['user']}:{password}@{secrets['host']}:{secrets['port']}/"
-    f"{secrets['database']}?driver=ODBC+Driver+17+for+SQL+Server&TrustServerCertificate=yes&timeout=30"
+conn_str = (
+    f"mssql+pyodbc://{user}:{password}@{host}:{port}/{database}"
+    "?driver=ODBC+Driver+17+for+SQL+Server&TrustServerCertificate=yes&timeout=10"
 )
-engine = sqlalchemy.create_engine(connection_string)
+
+# Create engine
+engine = create_engine(conn_str)
 query = text("""
 SELECT *								
 								
