@@ -2,8 +2,7 @@ from pydomo import Domo
 import pandas as pd
 from io import StringIO
 
-client_id = "d9e4748c-c9ea-4ae6-99b4-95ffa839de02"
-secret = "f505872f34e707fe4b2fec2e81da80d7f2a47ef72b60707eb3d7fbf93445b4be"
+
 
 api = Domo(client_id, secret, api_host='api.domo.com') 
 
